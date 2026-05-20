@@ -461,10 +461,6 @@ nav{
     border-radius:10px;
     transition:0.3s;
 }
-    .gallery-grid img:first-child:last-child{
-    display:block;
-}
-
 
 /* BRANCHES */
 
@@ -1814,6 +1810,13 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
     grid.appendChild(firstClone);
     grid.insertBefore(lastClone, originalSlides[0]);
+
+        if(window.innerWidth > 768){
+
+    firstClone.style.display = 'none';
+    lastClone.style.display = 'none';
+
+}
 
     const slides = grid.querySelectorAll('img');
 
