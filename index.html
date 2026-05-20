@@ -718,7 +718,7 @@ footer p{
     right:16px;
     top:50%;
     transform:translateY(-50%);
-    z-index:1201;
+    z-index:1301;
     box-shadow:0 8px 24px rgba(0,0,0,0.08);
     padding:0;
 }
@@ -767,7 +767,7 @@ footer p{
     opacity:0;
     visibility:hidden;
     transition:0.35s ease;
-    z-index:1100;
+    z-index:1190;
 }
 
 .menu-overlay.active{
@@ -777,6 +777,8 @@ footer p{
 
 body.menu-open{
     overflow:hidden;
+    height:100vh;
+    touch-action:none;
 }
 
 /* MOBILE */
@@ -827,7 +829,7 @@ section{
     align-items:center;
     gap:28px;
     transition:0.4s cubic-bezier(.77,0,.18,1);
-    z-index:1200;
+    z-index:1300;
     box-shadow:-10px 0 40px rgba(0,0,0,0.12);
 }
 
@@ -1627,20 +1629,28 @@ const mobileMenu = document.getElementById('mobileMenu');
 const menuOverlay = document.getElementById('menuOverlay');
 
 function closeMenu(){
+
     mobileToggle.classList.remove('active');
     mobileMenu.classList.remove('active');
     menuOverlay.classList.remove('active');
+
     document.body.classList.remove('menu-open');
+
 }
 
 function openMenu(){
+
     mobileToggle.classList.add('active');
     mobileMenu.classList.add('active');
     menuOverlay.classList.add('active');
+
     document.body.classList.add('menu-open');
+
 }
 
-mobileToggle.addEventListener('click', () => {
+mobileToggle.addEventListener('click', function(e){
+
+    e.stopPropagation();
 
     if(mobileMenu.classList.contains('active')){
         closeMenu();
@@ -1650,13 +1660,35 @@ mobileToggle.addEventListener('click', () => {
 
 });
 
-menuOverlay.addEventListener('click', closeMenu);
+/* TAP MIMO */
 
-navLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', function(){
+    closeMenu();
 });
 
-window.addEventListener('resize', () => {
+/* TAP NA POLOŽKU */
+
+document.querySelectorAll('#mobileMenu a').forEach(link => {
+
+    link.addEventListener('click', function(){
+        closeMenu();
+    });
+
+});
+
+/* ESCAPE */
+
+document.addEventListener('keydown', function(e){
+
+    if(e.key === 'Escape'){
+        closeMenu();
+    }
+
+});
+
+/* RESET PO DESKTOP RESIZE */
+
+window.addEventListener('resize', function(){
 
     if(window.innerWidth > 768){
         closeMenu();
