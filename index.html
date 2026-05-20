@@ -845,6 +845,23 @@ footer p{
     margin-bottom:24px;
     line-height:1.7;
 }
+    .gdpr-note{
+    font-size:0.9rem;
+    color:#777;
+    text-align:center;
+    line-height:1.6;
+    margin:-2px 0 24px;
+}
+
+.gdpr-note a{
+    color:var(--primary);
+    font-weight:600;
+    text-decoration:none;
+}
+
+.gdpr-note a:hover{
+    text-decoration:underline;
+}
 
 /* MOBILE */
 
@@ -1807,8 +1824,13 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
                 </div>
 
                 <div class="form-group">
-                    <textarea name="zprava" placeholder="Napište nám vaši představu dortu..." required></textarea>
+                    <textarea name="zprava" placeholder="Vaše zpráva" required></textarea>
                 </div>
+
+        <p class="gdpr-note">
+    Odesláním souhlasíte se
+    <a href="gdpr.html" target="_blank">zpracováním údajů</a>.
+</p>
 
                 <button class="btn btn-primary submit-btn" type="submit">
     Odeslat objednávku
