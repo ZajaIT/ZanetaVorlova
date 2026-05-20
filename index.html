@@ -776,32 +776,6 @@ footer p{
     display:none;
 }
 
-.desktop-carousel .gallery-grid{
-    display:flex;
-    gap:20px;
-    overflow:hidden;
-    scroll-behavior:smooth;
-}
-
-.desktop-carousel .gallery-grid img{
-    width:calc((100% - 60px) / 4);
-    min-width:calc((100% - 60px) / 4);
-    height:280px;
-    object-fit:cover;
-    flex-shrink:0;
-}
-
-    .desktop-carousel .gallery-arrow{
-    display:flex;
-}
-
-.desktop-carousel .gallery-arrow.prev{
-    left:15px;
-}
-
-.desktop-carousel .gallery-arrow.next{
-    right:15px;
-}
 
 /* MOBILE */
 
@@ -1849,9 +1823,40 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
     let currentIndex = 0;
 
+    const isDesktop = window.innerWidth > 768;
+    const enableDesktopCarousel = isDesktop && slides.length > 4;
+
+    // DESKTOP — 4 a méně fotek = bez slideru
+    if(isDesktop && slides.length <= 4){
+
+        prev.style.display = 'none';
+        next.style.display = 'none';
+
+        return;
+    }
+
+    // DESKTOP — 5+ fotek
+    if(enableDesktopCarousel){
+
+        grid.style.display = 'flex';
+        grid.style.gap = '20px';
+        grid.style.overflow = 'hidden';
+
+        slides.forEach(slide => {
+
+            slide.style.width = 'calc((100% - 60px) / 4)';
+            slide.style.minWidth = 'calc((100% - 60px) / 4)';
+            slide.style.flexShrink = '0';
+
+        });
+
+        prev.style.display = 'flex';
+        next.style.display = 'flex';
+    }
+
     function updatePosition() {
 
-        const gap = 20;
+        const gap = isDesktop ? 20 : 0;
 
         const slideWidth =
             slides[0].clientWidth + gap;
