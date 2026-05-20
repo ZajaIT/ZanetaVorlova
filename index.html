@@ -1754,31 +1754,31 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
                 <img src="dortpozadi2.jpg" alt="Objednávky dortů">
             </div>
 
-            <form>
+            <form action="https://formspree.io/f/xwvzlvap" method="POST">
 
                 <div class="form-group">
-                    <input type="text" placeholder="Jméno a příjmení">
+                    <input type="text" name="jmeno" placeholder="Jméno a příjmení" required>
                 </div>
 
 <div class="form-group">
-    <input type="tel" placeholder="Telefon">
+    <input type="tel" name="telefon" placeholder="Telefon" required>
 </div>
 
                 <div class="form-group">
-                    <input type="email" placeholder="E-mail">
+                    <input type="email" name="email" placeholder="E-mail">
                 </div>
 
                 <div class="form-group celebration-checkbox">
 
     <label>
-        <input type="checkbox" id="celebrationCheck">
+        <input type="checkbox" id="celebrationCheck" name="oslava">
         Poptáváte oslavu na Letné?
     </label>
 
 </div>
 
                 <div class="form-group">
-                    <select id="branchSelect">
+                    <select id="branchSelect" name="pobocka" required>
                         <option selected disabled>Vyberte pobočku</option>
                         <option value="marketa">Cukrárna Markéta</option>
                         <option value="letna">Cukrárna Letná</option>
@@ -1788,7 +1788,7 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
                 </div>
 
                 <div class="form-group">
-                    <textarea placeholder="Napište nám vaši představu dortu..."></textarea>
+                    <textarea name="zprava" placeholder="Napište nám vaši představu dortu..." required></textarea>
                 </div>
 
                 <button class="btn btn-primary submit-btn" type="submit">
