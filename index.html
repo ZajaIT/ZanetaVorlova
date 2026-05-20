@@ -809,8 +809,24 @@ form{
     flex-direction:column;
 }
 
+.celebrations-image{
+    order:2;
+    margin-top:30px;
+}
+
 .celebrations-content{
-    display:contents;
+    order:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.celebrations-content > *:not(.celebrations-button){
+    order:1;
+}
+
+.celebrations-button{
+    order:3;
+    margin-top:30px;
 }
 }
 
@@ -1316,17 +1332,17 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
 
             </div>
 
-            <div class="celebrations-image">
-                <img src="oslava.webp" alt="Dětská oslava">
-            </div>
-
             <div class="celebrations-button">
     <a href="#contact" class="btn btn-primary">
         Rezervovat oslavu
     </a>
 </div>
 
-        </div>
+            <div class="celebrations-image">
+                <img src="oslava.webp" alt="Dětská oslava">
+            </div>
+
+            </div>
 
     </div>
 
