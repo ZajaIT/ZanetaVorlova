@@ -699,6 +699,10 @@ footer p{
     opacity:0.7;
     line-height:1.8;
 }
+    /* Na počítači schováme mobilní tlačítko */
+.jen-mobil {
+    display: none;
+}
 
 /* MOBILE */
 
@@ -803,30 +807,14 @@ section{
 form{
     padding:28px;
 }
-
-    .celebrations-grid {
-    grid-template-columns: 1fr;
-}
-
-.celebrations-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.celebrations-content h3, 
-.celebrations-content p {
-    order: 1;
-}
-
-.celebrations-image {
-    order: 2;
-    margin-top: 30px;
-}
-
-.celebrations-button {
-    order: 3;
-    margin-top: 30px;
-}
+    .jen-desktop {
+        display: none;
+    }
+    .jen-mobil {
+        display: block;
+        margin-top: 30px; /* Udělá pěknou mezeru pod fotkou */
+        text-align: center; /* Vycentruje tlačítko na střed */
+    }
 }
 
 </style>
@@ -1329,21 +1317,23 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
 
                 
 
-            <div class="celebrations-button">
-            <a href="#contact" class="btn btn-primary">
-                Rezervovat oslavu
-            </a>
+            <!-- PŮVODNÍ TLAČÍTKO (přidáme třídu jen-desktop) -->
+        <div class="celebrations-button jen-desktop">
+            <a href="#contact" class="btn btn-primary">Rezervovat oslavu</a>
         </div>
-
     </div>
 
             <div class="celebrations-image">
                 <img src="oslava.webp" alt="Dětská oslava">
             </div>
 
-            </div>
-
+            <!-- NOVÉ TLAČÍTKO POD FOTKOU (přidáme třídu jen-mobil) -->
+    <div class="celebrations-button jen-mobil">
+        <a href="#contact" class="btn btn-primary">Rezervovat oslavu</a>
     </div>
+
+</div>
+
 
 </section>
 
