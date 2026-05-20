@@ -754,6 +754,13 @@ footer p{
     width:auto;
     transform:scale(1.2);
 }
+    .gallery-slider{
+    position:relative;
+}
+
+.gallery-arrow{
+    display:none;
+}
 
 /* MOBILE */
 
@@ -975,6 +982,61 @@ form{
     section[id]{
     scroll-margin-top:60px;
 }
+
+    .gallery-slider{
+    position:relative;
+    width:100%;
+}
+
+.gallery-grid{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    gap:0;
+    scrollbar-width:none;
+}
+
+.gallery-grid::-webkit-scrollbar{
+    display:none;
+}
+
+.gallery-grid img{
+    min-width:100%;
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    scroll-snap-align:center;
+    border-radius:18px;
+    flex-shrink:0;
+}
+
+.gallery-arrow{
+    display:flex;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.92);
+    box-shadow:0 5px 20px rgba(0,0,0,0.12);
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    cursor:pointer;
+    z-index:20;
+}
+
+.gallery-arrow.prev{
+    left:10px;
+}
+
+.gallery-arrow.next{
+    right:10px;
+}
 }
 
 </style>
@@ -1192,50 +1254,99 @@ form{
 
 <div class="gallery-section">
 
+    <div class="gallery-section">
+
     <h3 id="gallery-detske">Dětské dorty</h3>
-    <div class="gallery-grid">
-        <img src="detskedorty1.jpg" alt="">
-        <img src="detskedorty2.jpg" alt="">
-        <img src="detskedorty3.jpg" alt="">
-        <img src="detskedorty4.jpg" alt="">
+
+    <div class="gallery-slider">
+
+        <button class="gallery-arrow prev">‹</button>
+
+        <div class="gallery-grid">
+            <img src="detskedorty1.jpg" alt="">
+            <img src="detskedorty2.jpg" alt="">
+            <img src="detskedorty3.jpg" alt="">
+            <img src="detskedorty4.jpg" alt="">
+        </div>
+
+        <button class="gallery-arrow next">›</button>
+
     </div>
+
 
     <h3 id="gallery-dorty">Dorty</h3>
-    <div class="gallery-grid">
-        <img src="dorty1.jpg" alt="">
-        <img src="dorty2.jpg" alt="">
-        <img src="dorty3.jpg" alt="">
-        <img src="dorty4.jpg" alt="">
+
+    <div class="gallery-slider">
+
+        <button class="gallery-arrow prev">‹</button>
+
+        <div class="gallery-grid">
+            <img src="dorty1.jpg" alt="">
+            <img src="dorty2.jpg" alt="">
+            <img src="dorty3.jpg" alt="">
+            <img src="dorty4.jpg" alt="">
+        </div>
+
+        <button class="gallery-arrow next">›</button>
+
     </div>
+
 
     <h3 id="gallery-zakusky">Zákusky</h3>
-    <div class="gallery-grid">
-        <img src="zakusky1.jpg" alt="">
-        <img src="zakusky5.jpg" alt="">
-        <img src="zakusky3.jpg" alt="">
-        <img src="zakusky4.jpg" alt="">
+
+    <div class="gallery-slider">
+
+        <button class="gallery-arrow prev">‹</button>
+
+        <div class="gallery-grid">
+            <img src="zakusky1.jpg" alt="">
+            <img src="zakusky5.jpg" alt="">
+            <img src="zakusky3.jpg" alt="">
+            <img src="zakusky4.jpg" alt="">
+        </div>
+
+        <button class="gallery-arrow next">›</button>
+
     </div>
 
-<h3 id="gallery-zmrzlina">Zmrzlina</h3>
 
-<div class="gallery-grid">
-    <img src="zmrzlina1.jpg" alt="">
-    <img src="zmrzlina2.jpg" alt="">
-    <img src="zmrzlina3.jpg" alt="">
-    <img src="zmrzlina4.jpg" alt="">
-</div>
+    <h3 id="gallery-zmrzlina">Zmrzlina</h3>
+
+    <div class="gallery-slider">
+
+        <button class="gallery-arrow prev">‹</button>
+
+        <div class="gallery-grid">
+            <img src="zmrzlina1.jpg" alt="">
+            <img src="zmrzlina2.jpg" alt="">
+            <img src="zmrzlina3.jpg" alt="">
+            <img src="zmrzlina4.jpg" alt="">
+        </div>
+
+        <button class="gallery-arrow next">›</button>
+
+    </div>
+
 
     <h3 id="gallery-chlebicky">Chlebíčky</h3>
-    <div class="gallery-grid">
-        <img src="chlebicky5.jpg" alt="">
-        <img src="chlebicky2.jpg" alt="">
-        <img src="chlebicky3.jpg" alt="">
-        <img src="chlebicky9.png" alt="">
+
+    <div class="gallery-slider">
+
+        <button class="gallery-arrow prev">‹</button>
+
+        <div class="gallery-grid">
+            <img src="chlebicky5.jpg" alt="">
+            <img src="chlebicky2.jpg" alt="">
+            <img src="chlebicky3.jpg" alt="">
+            <img src="chlebicky9.png" alt="">
+        </div>
+
+        <button class="gallery-arrow next">›</button>
+
     </div>
 
 </div>
 
-    </div>
 </section>
 
 <section class="branches" id="branches">
@@ -1675,6 +1786,65 @@ celebrationCheck.addEventListener('change', () => {
         branchSelect.innerHTML = originalOptions;
 
     }
+
+});
+
+</script>
+
+    <script>
+
+document.querySelectorAll('.gallery-slider').forEach(slider => {
+
+    const grid = slider.querySelector('.gallery-grid');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
+
+    const slides = grid.querySelectorAll('img');
+
+    let currentIndex = 0;
+
+    function scrollToSlide(index){
+
+        const slideWidth = grid.clientWidth;
+
+        grid.scrollTo({
+            left:index * slideWidth,
+            behavior:'smooth'
+        });
+
+    }
+
+    next.addEventListener('click', () => {
+
+        currentIndex++;
+
+        if(currentIndex >= slides.length){
+            currentIndex = 0;
+        }
+
+        scrollToSlide(currentIndex);
+
+    });
+
+    prev.addEventListener('click', () => {
+
+        currentIndex--;
+
+        if(currentIndex < 0){
+            currentIndex = slides.length - 1;
+        }
+
+        scrollToSlide(currentIndex);
+
+    });
+
+    grid.addEventListener('scroll', () => {
+
+        const slideWidth = grid.clientWidth;
+
+        currentIndex = Math.round(grid.scrollLeft / slideWidth);
+
+    });
 
 });
 
