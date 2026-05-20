@@ -773,8 +773,31 @@ footer p{
 }
 
 .gallery-arrow{
-    display:none;
+    display:flex;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:54px;
+    height:54px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    cursor:pointer;
+    z-index:20;
 }
+
+.gallery-arrow.prev{
+    left:15px;
+}
+
+.gallery-arrow.next{
+    right:15px;
+}
+    
 
 
 /* MOBILE */
