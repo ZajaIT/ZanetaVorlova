@@ -1845,98 +1845,41 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     const prev = slider.querySelector('.prev');
     const next = slider.querySelector('.next');
 
-    const originalSlides = [...grid.querySelectorAll('img')];
-
-    const firstClone = originalSlides[0].cloneNode(true);
-    const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
-
-    grid.appendChild(firstClone);
-    grid.insertBefore(lastClone, originalSlides[0]);
-
-        const isDesktopCarousel =
-    slider.classList.contains('desktop-carousel');
-
-if(window.innerWidth > 768 && !isDesktopCarousel){
-
-    firstClone.style.display = 'none';
-    lastClone.style.display = 'none';
-
-}
-
     const slides = grid.querySelectorAll('img');
 
-    let currentIndex = 1;
+    let currentIndex = 0;
 
-    function updatePosition(instant = false){
+    function updatePosition() {
 
         const gap = 20;
 
-const slideWidth =
-    slides[0].clientWidth + gap;
+        const slideWidth =
+            slides[0].clientWidth + gap;
 
-        if(instant){
-            grid.style.scrollBehavior = 'auto';
-        } else {
-            grid.style.scrollBehavior = 'smooth';
-        }
-
-        grid.scrollLeft = currentIndex * slideWidth;
-
-        if(instant){
-            setTimeout(() => {
-                grid.style.scrollBehavior = 'smooth';
-            }, 50);
-        }
+        grid.scrollTo({
+            left: currentIndex * slideWidth,
+            behavior: 'smooth'
+        });
 
     }
 
-    updatePosition(true);
-
     next.addEventListener('click', () => {
 
-        currentIndex++;
+        if(currentIndex < slides.length - 1){
 
-        updatePosition();
+            currentIndex++;
+            updatePosition();
+
+        }
 
     });
 
     prev.addEventListener('click', () => {
 
-        currentIndex--;
+        if(currentIndex > 0){
 
-        updatePosition();
-
-    });
-
-    grid.addEventListener('scroll', () => {
-
-        const gap = 20;
-
-const slideWidth =
-    slides[0].clientWidth + gap;
-        const index = Math.round(grid.scrollLeft / slideWidth);
-
-        if(index !== currentIndex){
-            currentIndex = index;
-        }
-
-    });
-
-    grid.addEventListener('scrollend', () => {
-
-        if(currentIndex === slides.length - 1){
-
-            currentIndex = 1;
-
-            updatePosition(true);
-
-        }
-
-        if(currentIndex === 0){
-
-            currentIndex = slides.length - 2;
-
-            updatePosition(true);
+            currentIndex--;
+            updatePosition();
 
         }
 
