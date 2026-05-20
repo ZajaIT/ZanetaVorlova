@@ -1799,30 +1799,45 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     const prev = slider.querySelector('.prev');
     const next = slider.querySelector('.next');
 
+    const originalSlides = [...grid.querySelectorAll('img')];
+
+    const firstClone = originalSlides[0].cloneNode(true);
+    const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+
+    grid.appendChild(firstClone);
+    grid.insertBefore(lastClone, originalSlides[0]);
+
     const slides = grid.querySelectorAll('img');
 
-    let currentIndex = 0;
+    let currentIndex = 1;
 
-    function scrollToSlide(index){
+    function updatePosition(instant = false){
 
         const slideWidth = grid.clientWidth;
 
-        grid.scrollTo({
-            left:index * slideWidth,
-            behavior:'smooth'
-        });
+        if(instant){
+            grid.style.scrollBehavior = 'auto';
+        } else {
+            grid.style.scrollBehavior = 'smooth';
+        }
+
+        grid.scrollLeft = currentIndex * slideWidth;
+
+        if(instant){
+            setTimeout(() => {
+                grid.style.scrollBehavior = 'smooth';
+            }, 50);
+        }
 
     }
+
+    updatePosition(true);
 
     next.addEventListener('click', () => {
 
         currentIndex++;
 
-        if(currentIndex >= slides.length){
-            currentIndex = 0;
-        }
-
-        scrollToSlide(currentIndex);
+        updatePosition();
 
     });
 
@@ -1830,11 +1845,7 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
         currentIndex--;
 
-        if(currentIndex < 0){
-            currentIndex = slides.length - 1;
-        }
-
-        scrollToSlide(currentIndex);
+        updatePosition();
 
     });
 
@@ -1842,7 +1853,31 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
         const slideWidth = grid.clientWidth;
 
-        currentIndex = Math.round(grid.scrollLeft / slideWidth);
+        const index = Math.round(grid.scrollLeft / slideWidth);
+
+        if(index !== currentIndex){
+            currentIndex = index;
+        }
+
+    });
+
+    grid.addEventListener('scrollend', () => {
+
+        if(currentIndex === slides.length - 1){
+
+            currentIndex = 1;
+
+            updatePosition(true);
+
+        }
+
+        if(currentIndex === 0){
+
+            currentIndex = slides.length - 2;
+
+            updatePosition(true);
+
+        }
 
     });
 
