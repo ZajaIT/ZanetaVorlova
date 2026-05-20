@@ -461,6 +461,21 @@ nav{
     border-radius:10px;
     transition:0.3s;
 }
+    @media(min-width:769px){
+
+#gallery-detske + .gallery-slider .gallery-grid{
+    display:flex;
+    gap:20px;
+    overflow:hidden;
+}
+
+#gallery-detske + .gallery-slider .gallery-grid img{
+    width:calc((100% - 60px) / 4);
+    min-width:calc((100% - 60px) / 4);
+    flex-shrink:0;
+}
+
+}
 
 /* BRANCHES */
 
@@ -1038,15 +1053,6 @@ form{
     flex-shrink:0;
 }
 
-    .desktop-carousel .gallery-grid{
-    overflow-x:auto;
-    gap:0;
-}
-    .desktop-carousel .gallery-grid img{
-    min-width:100%;
-    width:100%;
-}
-
 .gallery-arrow{
     display:flex;
     position:absolute;
@@ -1293,7 +1299,7 @@ form{
 
     <h3 id="gallery-detske">Dětské dorty</h3>
 
-    <div class="gallery-slider desktop-carousel">
+    <div class="gallery-slider">
 
         <button class="gallery-arrow prev">‹</button>
 
