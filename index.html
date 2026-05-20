@@ -806,6 +806,17 @@ form{
 
 .celebrations-grid{
     grid-template-columns:1fr;
+    display:flex;
+    flex-direction:column;
+}
+
+    .celebrations-image{
+    order:2;
+}
+
+.celebrations-button{
+    order:3;
+    margin-top:28px;
 }
     .contact-image{
     display:none;
@@ -1310,9 +1321,11 @@ form{
 S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomenutelná.
 </p>
 
-                <a href="#contact" class="btn btn-primary">
-                    Rezervovat oslavu
-                </a>
+                <div class="celebrations-button">
+    <a href="#contact" class="btn btn-primary">
+        Rezervovat oslavu
+    </a>
+</div>
 
             </div>
 
