@@ -782,10 +782,6 @@ section{
     height:260px;
 }
 
-.branch-header{
-    flex-direction:column;
-    align-items:flex-start;
-}
 
 .branch-header img{
     width:90px;
@@ -794,6 +790,44 @@ section{
 
 .branch-bottom{
     grid-template-columns:1fr;
+}
+    .branch-header{
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    text-align:left;
+    margin-bottom:16px;
+}
+
+.branch-content-map{
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+.branch-text{
+    width:100%;
+    align-items:center;
+}
+
+.branch-content p{
+    padding-left:0;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.branch-socials{
+    margin-left:0;
+    justify-content:center;
+}
+
+.branch-content .btn{
+    margin-left:0;
+}
+
+.branch-mini-map{
+    width:100%;
+    max-width:320px;
 }
 
 .custom-cakes-grid{
