@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cukrárny pro radost</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+:root{
+    --primary:#24B4B1;
+    --primary-dark:#1d9996;
+    --pink:#ffd9e5;
+    --light:#fffafc;
+    --text:#222;
+    --gray:#777;
+    --shadow:0 10px 30px rgba(0,0,0,0.08);
+    --radius:28px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:white;
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+section{
+    padding:90px 0;
+}
+
+/* NAV */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:white;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+.nav-wrapper{
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:800;
+    color:var(--primary);
+    letter-spacing:1px;
+}
+
+.nav-links{
+    display:flex;
+    gap:54px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:600;
+    transition:0.3s;
+    position:relative;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.nav-links a.active{
+    color:var(--primary);
+}
+
+.nav-links a:not(:last-child)::before{
+    content:'•';
+    color:#24B4B1;
+    position:absolute;
+    right:-31px;
+    top:50%;
+    transform:translateY(-52%);
+    font-size:1.6rem;
+    font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:url('dorthero.jpg') center/cover no-repeat;
+    z-index:-2;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+    z-index:-1;
+}
+
+.hero-content{
+    width:min(900px,92%);
+    color:white;
+    padding-top:70px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,9vw,6rem);
+    line-height:1;
+    font-weight:800;
+    margin-bottom:22px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    font-weight:400;
+    margin-bottom:34px;
+}
+
+.hero-slogan{
+    font-size:1.15rem;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:24px;
+    color:rgba(255,255,255,0.92);
+}
+
+.hero-slogan span{
+    margin-left:8px;
+    font-size:1.1rem;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:40px;
+}
+
+.btn{
+    padding:16px 30px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.3s;
+    display:inline-block;
+}
+
+.btn-primary{
+    background:#24B4B1;
+    color:white;
+    box-shadow:var(--shadow);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    background:#24B4B1;
+}
+
+.btn-secondary{
+    background:white;
+    color:var(--text);
+}
+
+.btn-secondary:hover{
+    transform:translateY(-3px);
+}
+
+.arrow{
+    font-size:2rem;
+    animation:bounce 1.5s infinite;
+    margin-bottom:30px;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(10px);}
+}
+
+.branch-nav{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-top:10px;
+}
+
+.branch-nav a{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:26px;
+    padding:18px;
+    transition:0.3s;
+    position:relative;
+}
+
+.branch-nav a:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.18);
+}
+
+.branch-nav img{
+    border-radius:20px;
+}
+
+.branch-badge{
+    position:absolute;
+    bottom:14px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff9fbc;
+    color:#444;
+    font-size:0.75rem;
+    font-weight:700;
+    padding:7px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+}
+
+.branch-socials{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-left:50px;
+}
+
+.social-icon{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#24B4B1;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.25s;
+}
+
+.social-icon:hover{
+    transform:translateY(-3px) scale(1.08);
+}
+
+
+
+
+/* ABOUT */
+
+.about{
+    background:white;
+    overflow:hidden;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:18px;
+    color:#1f1f1f;
+    font-size:2.8rem;
+    font-weight:800;
+}
+
+.section-subtitle{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 60px;
+    color:var(--gray);
+    line-height:1.8;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-image{
+    border-radius:10px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.about-image img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+
+.about-content{
+    max-width:560px;
+}
+
+.about-content h3{
+    font-size:2rem;
+    margin-bottom:24px;
+}
+
+.about-content p{
+    line-height:1.9;
+    margin-bottom:22px;
+    color:#555;
+}
+
+.custom-cakes{
+    padding:90px 0;
+    background:#fff9fb;
+}
+
+.custom-cakes-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.custom-cakes-content h2{
+    font-size:3rem;
+    margin-bottom:12px;
+    font-weight:800;
+}
+
+.custom-cakes-content h3{
+    font-size:1.5rem;
+    color:var(--primary);
+    margin-bottom:28px;
+    font-weight:700;
+}
+
+.custom-cakes-content p{
+    margin-bottom:20px;
+    line-height:1.9;
+    color:#555;
+    font-size:1.05rem;
+}
+
+.custom-cakes-image{
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.custom-cakes-image img{
+    width:100%;
+    display:block;
+}
+
+/* MENU */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:24px;
+}
+
+.menu-card{
+    background:white;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:0.3s;
+}
+
+.menu-card:hover{
+    transform:translateY(-8px);
+}
+
+.menu-card img{
+    height:230px;
+    object-fit:cover;
+}
+
+.menu-card-content{
+    padding:24px;
+}
+
+.menu-card h3{
+    margin-bottom:10px;
+    font-size:1.2rem;
+    text-align:center;
+}
+
+.menu-card p{
+    color:#666;
+    line-height:1.6;
+    font-size:0.95rem;
+    text-align:center;
+}
+
+.menu-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+.gallery-section{
+    margin-top:80px;
+}
+
+.gallery-section h3{
+    font-size:2rem;
+    margin:60px 0 24px;
+    text-align:center;
+    scroll-margin-top:120px;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+
+/* BRANCHES */
+
+.branches{
+    background:#fff9fb;
+}
+
+.branch-grid{
+    display:grid;
+    gap:40px;
+}
+
+.branch-card{
+    background:white;
+    border-radius:36px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    scroll-margin-top:85px;
+}
+
+.branch-image img{
+    height:360px;
+    object-fit:cover;
+object-position:center 75%;
+}
+
+.branch-image-double{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+}
+
+.branch-image-double img{
+    height:360px;
+    object-fit:cover;
+}
+
+
+.branch-content{
+    padding:36px;
+}
+
+.branch-content-map{
+    display:flex;
+    justify-content:space-between;
+    align-items:stretch;
+    gap:30px;
+}
+
+
+.branch-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.branch-mini-map{
+    width:260px;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,0.08);
+    transition:0.3s;
+    flex-shrink:0;
+}
+
+.branch-mini-map:hover{
+    transform:translateY(-4px);
+}
+
+.branch-mini-map img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.branch-header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:24px;
+    flex-wrap:wrap;
+}
+
+.branch-header img{
+    width:110px;
+    height:110px;
+    object-fit:contain;
+}
+
+.branch-header h3{
+    font-size:2rem;
+}
+
+.branch-content p{
+    margin-bottom:12px;
+    line-height:1.7;
+    color:#555;
+    padding-left:55px;
+}
+
+.branch-content .btn{
+    margin-left:50px;
+}
+
+
+
+.branch-content p:first-of-type{
+    margin-bottom:22px;
+}
+
+
+
+.map-wrapper{
+    margin-top:70px;
+    overflow:hidden;
+    border-radius:36px;
+    box-shadow:var(--shadow);
+}
+
+.map-wrapper iframe{
+    width:100%;
+    height:500px;
+    border:0;
+}
+
+/* CELEBRATIONS */
+
+.celebrations{
+    background:white;
+}
+
+.celebrations-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.celebrations-content p{
+    margin-bottom:22px;
+    line-height:1.9;
+    color:#555;
+    font-size:1.05rem;
+}
+
+.celebrations-image{
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.celebrations-image img{
+    width:100%;
+    height:380px;
+    object-fit:cover;
+    display:block;
+}
+
+.celebrations-subtitle{
+    font-size:1.5rem;
+    color:var(--primary);
+    margin-bottom:28px;
+    font-weight:700;
+    text-align:center;
+}
+
+.celebrations-heading{
+    font-size:1.5rem;
+    margin-bottom:24px;
+    text-align:left;
+}
+
+/* CONTACT */
+
+.contact-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.contact-image img{
+    border-radius:10px;
+    height:600px;
+    object-fit:cover;
+    box-shadow:var(--shadow);
+}
+
+form{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:none;
+    background:#f5f5f5;
+    padding:18px;
+    border-radius:18px;
+    font-family:inherit;
+    font-size:1rem;
+}
+
+textarea{
+    min-height:160px;
+    resize:vertical;
+}
+
+.submit-btn{
+    border:none;
+    font-family:'Montserrat',sans-serif;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:40px 0;
+    text-align:center;
+}
+
+footer p{
+    opacity:0.7;
+    line-height:1.8;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+.menu-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.branch-nav{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.about-grid,
+.contact-wrapper{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+section{
+    padding:70px 0;
+}
+
+.nav-wrapper{
+    flex-direction:column;
+    justify-content:center;
+    gap:10px;
+    height:auto;
+    padding:14px 0;
+}
+
+.nav-links{
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero{
+    padding:140px 0 70px;
+}
+
+.hero h1{
+    font-size:3.2rem;
+}
+
+.hero p{
+    font-size:1rem;
+}
+
+.gallery-grid{
+    grid-template-columns:1fr 1fr;
+}
+
+.branch-nav{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.section-title{
+    font-size:2.1rem;
+}
+
+.menu-grid{
+    grid-template-columns:1fr;
+}
+
+
+.about-content{
+    padding:34px;
+}
+
+.branch-image img{
+    height:260px;
+}
+
+.branch-header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.branch-header img{
+    width:90px;
+    height:90px;
+}
+
+.branch-bottom{
+    grid-template-columns:1fr;
+}
+
+.custom-cakes-grid{
+    grid-template-columns:1fr;
+}
+
+.contact-image img{
+    height:350px;
+}
+
+form{
+    padding:28px;
+}
+
+.celebrations-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-wrapper">
+        
+
+        <div class="nav-links">
+            <a href="#hero">Domů</a>
+            <a href="#about">O nás</a>
+            <a href="#menu">Nabídka</a>
+            <a href="#branches">Pobočky</a>
+            <a href="#celebrations">Oslavy</a>
+            <a href="#contact">Objednávky</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero" id="hero">
+
+    <div class="hero-content">
+
+        <h1>Cukrárny<br>pro radost</h1>
+
+<div class="hero-slogan">
+    Kvalita, chuť, láska — to jsou naše cukrárny
+</div>
+
+        <p>Vyberte si tu svoji oblíbenou pobočku a objevte svět dortů, zákusků a sladkých okamžiků.</p>
+
+        <div class="hero-buttons">
+            <a href="#menu" class="btn btn-primary">Prohlédnout nabídku</a>
+            <a href="#contact" class="btn btn-secondary">Objednat dort</a>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="branch-nav">
+
+            <a href="#marketa">
+                <img src="logomarketa.jpg" alt="Cukrárna Markéta">
+            </a>
+
+            <a href="#letna">
+    <img src="logoletna.jpg" alt="Cukrárna Letná">
+    <span class="branch-badge">Dětský koutek</span>
+</a>
+
+            <a href="#vinohrady">
+                <img src="logovinohrady.jpg" alt="Cukrárna Vinohrady">
+            </a>
+
+            <a href="#roztoky">
+                <img src="logoroztoky.jpg" alt="Cukrárna Roztoky">
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="about" id="about">
+    <div class="container">
+
+        <h2 class="section-title">O nás</h2>
+
+        <p class="section-subtitle">
+            Jen co se řekne cukrárna, už myslíte na nadýchaného indiánka, lahodný větrník, šťavnatou tartaletku, medovník, zmrzlinu nebo výbornou kávu? Zastavte na jedné z našich poboček v Praze a dopřejte si to nejlepší!
+        </p>
+
+        <div class="about-grid">
+
+    <div class="about-image">
+        <img src="cukrarna1.jpg" alt="Naše cukrárna">
+    </div>
+
+    <div class="about-content">
+
+        <h3>Pro mlsné jazýčky</h3>
+
+        <p>
+            Chceme, aby každá návštěva byla příjemným zážitkem a aby si u nás
+            každý našel svůj oblíbený sladký moment.
+        </p>
+
+        <p>
+             <strong>Břevnov? Roztoky? Letná? Vinohrady?</strong> Na každé z těchto poboček si můžete vychutnat zákusky, dortíky, zmrzlinu, kávu, chlebíčky a mnoho dalšího. Koukněte ještě trošku dolů na <strong>naši nabídku</strong>, nebo si rovnou <strong>objednejte něco dobrého</strong>.
+        </p>
+           
+        <a href="#contact" class="btn btn-primary">Objednat dobroty</a>
+
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+<section class="custom-cakes">
+
+    <div class="container">
+
+        <div class="custom-cakes-grid">
+
+            <div class="custom-cakes-content">
+
+                <h2>Upečeme, nazdobíme</h2>
+
+                <h3>Dorty na zakázku</h3>
+
+                <p>
+                    Narozeninové nebo svatební dorty, svatební koláčky,
+                    zákusky či minizákusky a chlebíčky.
+                </p>
+
+                <p>
+                    Ať už chystáte oslavu, narozeninovou párty, nebo svatbu,
+                    sladkou tečku potřebuje každá příležitost.
+                </p>
+
+                <p>
+                    Váš úkol je jednoduchý – <strong>vyberte si, objednejte do 14:00
+                    a další den vyzvedněte.</strong>
+                </p>
+
+            </div>
+
+            <div class="custom-cakes-image">
+                <img src="dortpozadi3.jpg" alt="Dort na zakázku">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="menu">
+    <div class="container">
+
+        <h2 class="section-title">Co u nás najdete</h2>
+
+        <p class="section-subtitle">
+            Poctivé dorty, zákusky, chlebíčky a další mňamky připravované s láskou.
+        </p>
+
+        <div class="menu-grid">
+
+
+<a href="#gallery-detske" class="menu-link">            
+<div class="menu-card">
+                <img src="detskydort1.jpg" alt="Dětské dorty">
+                <div class="menu-card-content">
+                    <h3>Dětské dorty</h3>
+<p>na dětské oslavy</p>
+                </div>
+</div>
+</a>
+
+<a href="#gallery-dorty" class="menu-link">
+            <div class="menu-card">
+                <img src="dortik.jpg" alt="Dorty">
+                <div class="menu-card-content">
+                    <h3>Dorty</h3>
+<p>pro každou příležitost</p>
+                </div>
+</div>
+</a>
+
+<a href="#gallery-zakusky" class="menu-link">
+            <div class="menu-card">
+                <img src="zakusky2.jpg" alt="Zákusky">
+                <div class="menu-card-content">
+                    <h3>Zákusky</h3>
+<p>a minizákusky</p>
+                </div>
+</div>
+</a>
+
+<a href="#gallery-zmrzlina" class="menu-link">
+    <div class="menu-card">
+        <img src="zmrzlina.jpg" alt="Zmrzlina">
+
+        <div class="menu-card-content">
+            <h3>Zmrzlina</h3>
+            <p>poháry, káva</p>
+        </div>
+
+    </div>
+</a>
+
+<a href="#gallery-chlebicky" class="menu-link">
+            <div class="menu-card">
+                <img src="chlebicky1.jpg" alt="Chlebíčky">
+                <div class="menu-card-content">
+                    <h3>Chlebíčky</h3>
+<p>a obložené mísy</p>
+                </div>
+</div>
+</a>
+
+        </div>
+
+<div class="gallery-section">
+
+    <h3 id="gallery-detske">Dětské dorty</h3>
+    <div class="gallery-grid">
+        <img src="detskedorty1.jpg" alt="">
+        <img src="detskedorty2.jpg" alt="">
+        <img src="detskedorty3.jpg" alt="">
+        <img src="detskedorty4.jpg" alt="">
+    </div>
+
+    <h3 id="gallery-dorty">Dorty</h3>
+    <div class="gallery-grid">
+        <img src="dorty1.jpg" alt="">
+        <img src="dorty2.jpg" alt="">
+        <img src="dorty3.jpg" alt="">
+        <img src="dorty4.jpg" alt="">
+    </div>
+
+    <h3 id="gallery-zakusky">Zákusky</h3>
+    <div class="gallery-grid">
+        <img src="zakusky1.jpg" alt="">
+        <img src="zakusky5.jpg" alt="">
+        <img src="zakusky3.jpg" alt="">
+        <img src="zakusky4.jpg" alt="">
+    </div>
+
+<h3 id="gallery-zmrzlina">Zmrzlina</h3>
+
+<div class="gallery-grid">
+    <img src="zmrzlina1.jpg" alt="">
+    <img src="zmrzlina2.jpg" alt="">
+    <img src="zmrzlina3.jpg" alt="">
+    <img src="zmrzlina4.jpg" alt="">
+</div>
+
+    <h3 id="gallery-chlebicky">Chlebíčky</h3>
+    <div class="gallery-grid">
+        <img src="chlebicky5.jpg" alt="">
+        <img src="chlebicky2.jpg" alt="">
+        <img src="chlebicky3.jpg" alt="">
+        <img src="chlebicky4.jpg" alt="">
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+<section class="branches" id="branches">
+    <div class="container">
+
+        <h2 class="section-title">Kde nás najdete</h2>
+
+        <p class="section-subtitle">
+            Každá pobočka má své jedinečné kouzlo.
+        </p>
+
+        <div class="branch-grid">
+
+            <div class="branch-card" id="marketa">
+                <div class="branch-image">
+                    <img src="marketa.webp" alt="Cukrárna Markéta">
+                </div>
+
+                <div class="branch-content branch-content-map">
+
+    <div class="branch-text">
+
+        <div class="branch-header">
+            <img src="logomarketa.jpg" alt="Cukrárna Markéta">
+            <h3>Cukrárna Markéta</h3>
+        </div>
+
+        <p>
+            <strong>Adresa:</strong>
+            Radimova 40, 169 00 Praha Břevnov
+        </p>
+
+        <div class="branch-socials">
+
+    <a href="#contact" class="btn btn-primary" style="margin-left:0;">
+        Objednejte si na Břevnově
+    </a>
+
+    <a href="https://www.facebook.com/cukrarnamarketa?locale=cs_CZ" target="_blank" class="social-icon">
+    <i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="https://www.instagram.com/cukrarnamarketa?fbclid=IwY2xjawR6PCNleHRuA2FlbQIxMABicmlkETFwZkNTTHVoTEN0dEFjZUduc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhRYieuHKtLOF3YGeSbEIRuLVv-mTG6TYbGjsjQBsOJ_WLmOPZXlJdj9UQWP_aem_qRFcEBCk4Z6bCAR7FgAFRw" target="_blank" class="social-icon">
+    <i class="fa-brands fa-instagram"></i>
+</a>
+
+</div>
+</div>
+
+    <a 
+       class="branch-mini-map"
+       href="https://maps.app.goo.gl/CkpsQnS2Kpq2dTS96"
+       target="_blank"
+    >
+        <img src="mapa-brevnov.png" alt="Mapa Břevnov">
+    </a>
+
+</div>
+            </div>
+
+            <div class="branch-card" id="letna">
+                <div class="branch-image branch-image-double">
+    <img src="letna.jpg" alt="Cukrárna Letná">
+    <img src="koutek2.jpg" alt="Dětský koutek">
+</div>
+
+                <div class="branch-content branch-content-map">
+
+    <div class="branch-text">
+
+        <div class="branch-header">
+            <img src="logoletna.jpg" alt="Cukrárna Letná">
+            <h3>Cukrárna Letná</h3>
+        </div>
+
+        <p>
+            <strong>Adresa:</strong>
+            Milady Horákové 611/73, 170 00 Praha Letná
+        </p>
+
+        <div class="branch-socials">
+
+    <a href="#contact" class="btn btn-primary" style="margin-left:0;">
+        Objednejte si na Letné
+    </a>
+
+    <a href="https://www.facebook.com/profile.php?id=61550275181906" target="_blank" class="social-icon">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/cukrarnaletna?fbclid=IwY2xjawR6PsJleHRuA2FlbQIxMABicmlkETF3RklPNWgzTkYxRXRzZ2loc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHk6lAVE8MXmIdnIqAhtk3UfTqooUMtCtGYrI9GlUGoyBqsh2JkTyTNh-bI0M_aem_doIQCvQZGI8rqDWpyxoYJA" target="_blank" class="social-icon">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+</div>
+
+    </div>
+
+    <a 
+       class="branch-mini-map"
+       href="https://maps.app.goo.gl/m5a9kKB1YfoSPmnF7"
+       target="_blank"
+    >
+        <img src="mapa-letna.png" alt="Mapa Letná">
+    </a>
+
+</div>
+</div>
+
+<div class="branch-card" id="vinohrady">
+
+    <div class="branch-image branch-image-double">
+        <img src="vinohrady1.jpg" alt="Cukrárna Vinohrady">
+        <img src="vinohrady20.jpg" alt="Cukrárna Vinohrady interiér">
+    </div>
+            <div class="branch-content branch-content-map">
+
+    <div class="branch-text">
+
+        <div class="branch-header">
+            <img src="logovinohrady.jpg" alt="Cukrárna Vinohrady">
+            <h3>Cukrárna Vinohrady</h3>
+        </div>
+
+        <p>
+            <strong>Adresa:</strong>
+            Náměstí Jiřího z Lobkovic 15, 130 00 Praha Vinohrady
+        </p>
+
+        <div class="branch-socials">
+
+    <a href="#contact" class="btn btn-primary" style="margin-left:0;">
+        Objednejte si ve Vinohradech
+    </a>
+
+    <a href="https://www.facebook.com/profile.php?id=61565804422233" target="_blank" class="social-icon">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/cukrarnavinohrady?fbclid=IwY2xjawR6P0FleHRuA2FlbQIxMABicmlkETFwZkNTTHVoTEN0dEFjZUduc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtL5HBExb56aFHopcfrzj-bOD9HEA74pPN_Ey4KeNFgNSc-7WUyrIZgykipX_aem_dBm8ppHt3KNJeVSj4-W4qw" target="_blank" class="social-icon">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+</div>
+
+    </div>
+
+    <a 
+       class="branch-mini-map"
+       href="https://maps.app.goo.gl/XCazi8QVC8LCTKQv9"
+       target="_blank"
+    >
+        <img src="mapa-vinohrady.png" alt="Mapa Vinohrady">
+    </a>
+
+</div>
+</div>
+
+
+<div class="branch-card" id="roztoky">
+
+    <div class="branch-image">
+        <img src="roztoky.jpg" alt="Cukrárna Roztoky">
+    </div>
+            <div class="branch-content branch-content-map">
+
+    <div class="branch-text">
+
+        <div class="branch-header">
+            <img src="logoroztoky.jpg" alt="Cukrárna Roztoky">
+            <h3>Cukrárna Roztoky</h3>
+        </div>
+
+        <p>
+            <strong>Adresa:</strong>
+            Jana Palacha 506, 252 63 Praha Roztoky
+        </p>
+
+        <div class="branch-socials">
+
+    <a href="#contact" class="btn btn-primary" style="margin-left:0;">
+        Objednejte si v Roztokách
+    </a>
+
+    <a href="https://www.facebook.com/profile.php?id=61587819459964" target="_blank" class="social-icon">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/cukrarnaroztoky/" target="_blank" class="social-icon">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+</div>
+
+    </div>
+
+    <a 
+       class="branch-mini-map"
+       href="https://maps.app.goo.gl/wTox27WcRWcojC8y9"
+       target="_blank"
+    >
+        <img src="mapa-roztoky.png" alt="Mapa Roztoky">
+    </a>
+
+</div>
+</div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="celebrations" id="celebrations">
+
+    <div class="container">
+
+        <h2 class="section-title">Oslavy na Letné</h2>
+
+        <h3 class="celebrations-subtitle">
+    Narozeninové oslavy pro děti v Cukrárně Letná
+</h3>
+
+        <div class="celebrations-grid">
+
+            <div class="celebrations-content">
+
+                <p>
+                    Nevíte kde uspořádat oslavu?
+                    Naše cukrárna je to správné místo.
+                </p>
+
+                <p>
+                    V dětském koutku můžete uspořádat
+                    pro svou ratolest nejen narozeninovou oslavu.
+            
+                </p>
+
+<h3 class="celebrations-heading">
+    Bez dortu to není ono!
+</h3>
+
+<p>
+S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomenutelná.
+</p>
+
+                <a href="#contact" class="btn btn-primary">
+                    Rezervovat oslavu
+                </a>
+
+            </div>
+
+            <div class="celebrations-image">
+                <img src="oslava.webp" alt="Dětská oslava">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact">
+    <div class="container">
+
+        <h2 class="section-title">Objednávky</h2>
+
+        <p class="section-subtitle">
+            Napište nám svou představu a my se vám co nejdříve ozveme.
+        </p>
+
+        <div class="contact-wrapper">
+
+            <div class="contact-image">
+                <img src="dortpozadi2.jpg" alt="Objednávky dortů">
+            </div>
+
+            <form>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Jméno a příjmení">
+                </div>
+
+<div class="form-group">
+    <input type="tel" placeholder="Telefon">
+</div>
+
+                <div class="form-group">
+                    <input type="email" placeholder="E-mail">
+                </div>
+
+                <div class="form-group">
+                    <select>
+                        <option selected disabled>Vyberte pobočku</option>
+                        <option>Cukrárna Markéta</option>
+                        <option>Cukrárna Letná</option>
+                        <option>Cukrárna Vinohrady</option>
+                        <option>Cukrárna Roztoky</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea placeholder="Napište nám vaši představu dortu..."></textarea>
+                </div>
+
+                <button class="btn btn-primary submit-btn" type="submit">
+    Odeslat objednávku
+</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>
+            © 2026 Cukrárny pro radost<br>
+            Všechny pobočky pod jednou sladkou střechou.
+        </p>
+    </div>
+</footer>
+
+<script>
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.scrollTo(0, 0);
+
+</script>
+
+<script>
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 140;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        const href = link.getAttribute("href");
+
+        if (href === "#" + current && current !== "hero") {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
