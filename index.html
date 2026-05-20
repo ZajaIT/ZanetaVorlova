@@ -767,37 +767,31 @@ footer p{
     scroll-behavior:smooth;
 }
 
+.desktop-carousel .gallery-grid{
+    display:flex;
+    gap:20px;
+    overflow:hidden;
+    scroll-behavior:smooth;
+}
+
 .desktop-carousel .gallery-grid img{
-    min-width:calc(33.333% - 14px);
-    height:340px;
+    width:calc((100% - 60px) / 4);
+    min-width:calc((100% - 60px) / 4);
+    height:280px;
     object-fit:cover;
     flex-shrink:0;
 }
 
-.desktop-carousel .gallery-arrow{
+    .desktop-carousel .gallery-arrow{
     display:flex;
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,0.95);
-    box-shadow:0 5px 24px rgba(0,0,0,0.12);
-    align-items:center;
-    justify-content:center;
-    font-size:2rem;
-    cursor:pointer;
-    z-index:20;
 }
 
 .desktop-carousel .gallery-arrow.prev{
-    left:-20px;
+    left:15px;
 }
 
 .desktop-carousel .gallery-arrow.next{
-    right:-20px;
+    right:15px;
 }
 
 /* MOBILE */
@@ -1866,8 +1860,12 @@ if(window.innerWidth > 768 && !isDesktopCarousel){
 
     function updatePosition(instant = false){
 
-        const slideWidth =
-    slides[0].clientWidth + 20;
+        const gap = 20;
+
+const gap = 20;
+
+const slideWidth =
+    slides[0].clientWidth + gap;
 
         if(instant){
             grid.style.scrollBehavior = 'auto';
@@ -1905,9 +1903,10 @@ if(window.innerWidth > 768 && !isDesktopCarousel){
 
     grid.addEventListener('scroll', () => {
 
-        const slideWidth =
-    slides[0].clientWidth + 20;
+        const gap = 20;
 
+const slideWidth =
+    slides[0].clientWidth + gap;
         const index = Math.round(grid.scrollLeft / slideWidth);
 
         if(index !== currentIndex){
