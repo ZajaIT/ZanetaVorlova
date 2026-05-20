@@ -634,6 +634,19 @@ object-position:center 75%;
     object-fit:cover;
     display:block;
 }
+    .celebrations-image.gallery-slider .gallery-grid{
+    display:flex;
+    overflow:hidden;
+    gap:0;
+}
+
+.celebrations-image.gallery-slider .gallery-grid img{
+    min-width:100%;
+    width:100%;
+    height:380px;
+    object-fit:cover;
+    flex-shrink:0;
+}
 
 .celebrations-subtitle{
     font-size:1.5rem;
@@ -1673,9 +1686,20 @@ S tím správným dortem z naší cukrárny bude oslava vašich dětí nezapomen
         </div>
     </div>
 
-            <div class="celebrations-image">
-                <img src="oslava.webp" alt="Dětská oslava">
-            </div>
+            <div class="celebrations-image gallery-slider">
+
+    <button class="gallery-arrow prev">‹</button>
+
+    <div class="gallery-grid">
+        <img src="oslava.webp" alt="Dětská oslava">
+        <img src="koutek1.jpg" alt="Dětský koutek">
+        <img src="koutek2.jpg" alt="Dětský koutek">
+        <img src="oslavy2.jpg" alt="Oslava">
+    </div>
+
+    <button class="gallery-arrow next">›</button>
+
+</div>
 
             <!-- NOVÉ TLAČÍTKO POD FOTKOU (přidáme třídu jen-mobil) -->
     <div class="celebrations-button jen-mobil">
