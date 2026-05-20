@@ -804,18 +804,26 @@ form{
     padding:28px;
 }
 
-.celebrations-grid{
-    grid-template-columns:1fr;
+.celebrations-grid {
+    grid-template-columns: 1fr;
+    display: flex;           
+    flex-direction: column;   
 }
 
-.celebrations-image{
-    order:2;
-    margin-top:30px;
+.celebrations-content {
+    display: flex;            
+    flex-direction: column;  
+    order: 1;                 
 }
 
-.celebrations-button{
-    order:3;
-    margin-top:30px;
+.celebrations-image {
+    order: 2;                
+    margin-top: 30px;
+}
+
+.celebrations-button {
+    order: 3;                 
+    margin-top: 30px;
 }
 }
 
