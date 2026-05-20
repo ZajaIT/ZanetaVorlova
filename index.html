@@ -1902,6 +1902,8 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
     const isDesktop = window.innerWidth > 768;
     const enableDesktopCarousel = isDesktop && slides.length > 4;
+    const isCelebrationGallery =
+    slider.closest('.celebrations-image');
 
     // DESKTOP — 4 a méně fotek = bez slideru
     if(isDesktop && slides.length <= 4){
@@ -1913,11 +1915,26 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     }
 
     // DESKTOP — 5+ fotek
-    if(enableDesktopCarousel){
+    if(enableDesktopCarousel || isCelebrationGallery){
 
-        grid.style.display = 'flex';
+    grid.style.display = 'flex';
+    grid.style.overflow = 'hidden';
+
+    if(isCelebrationGallery){
+
+        grid.style.gap = '0';
+
+        slides.forEach(slide => {
+
+            slide.style.width = '100%';
+            slide.style.minWidth = '100%';
+            slide.style.flexShrink = '0';
+
+        });
+
+    } else {
+
         grid.style.gap = '20px';
-        grid.style.overflow = 'hidden';
 
         slides.forEach(slide => {
 
@@ -1927,13 +1944,18 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
 
         });
 
-        prev.style.display = 'flex';
-        next.style.display = 'flex';
     }
+
+    prev.style.display = 'flex';
+    next.style.display = 'flex';
+}
 
     function updatePosition() {
 
-        const gap = isDesktop ? 20 : 0;
+        const gap =
+    isDesktop && !isCelebrationGallery
+    ? 20
+    : 0;
 
         const slideWidth =
             slides[0].clientWidth + gap;
