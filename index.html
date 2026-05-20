@@ -1916,16 +1916,16 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     const isDesktop = window.innerWidth > 768;
     const enableDesktopCarousel = isDesktop && slides.length > 4;
     const isCelebrationGallery =
-    slider.closest('.celebrations-image');
+    slider.classList.contains('celebrations-image');
 
     // DESKTOP — 4 a méně fotek = bez slideru
-    if(isDesktop && slides.length <= 4){
+    if(isDesktop && slides.length <= 4 && !isCelebrationGallery){
 
-        prev.style.display = 'none';
-        next.style.display = 'none';
+    prev.style.display = 'none';
+    next.style.display = 'none';
 
-        return;
-    }
+    return;
+}
 
     // DESKTOP — 5+ fotek
     if(enableDesktopCarousel || isCelebrationGallery){
