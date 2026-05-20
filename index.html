@@ -1899,6 +1899,19 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     const slides = grid.querySelectorAll('img');
 
     let currentIndex = 0;
+    grid.addEventListener('scroll', () => {
+
+    if(window.innerWidth <= 768){
+
+        const slideWidth = slides[0].clientWidth;
+
+        currentIndex = Math.round(
+            grid.scrollLeft / slideWidth
+        );
+
+    }
+
+});
 
     const isDesktop = window.innerWidth > 768;
     const enableDesktopCarousel = isDesktop && slides.length > 4;
@@ -1918,11 +1931,22 @@ document.querySelectorAll('.gallery-slider').forEach(slider => {
     if(enableDesktopCarousel || isCelebrationGallery){
 
     grid.style.display = 'flex';
+    if(window.innerWidth <= 768){
+
+    grid.style.overflowX = 'auto';
+
+} else {
+
     grid.style.overflow = 'hidden';
+
+}
 
     if(isCelebrationGallery){
 
-        grid.style.gap = '0';
+    prev.style.display = 'flex';
+    next.style.display = 'flex';
+
+    grid.style.gap = '0';
 
         slides.forEach(slide => {
 
