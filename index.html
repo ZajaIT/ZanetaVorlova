@@ -1037,6 +1037,10 @@ form{
     border-radius:18px;
     flex-shrink:0;
 }
+    .desktop-carousel .gallery-grid img{
+    min-width:100%;
+    width:100%;
+}
 
 .gallery-arrow{
     display:flex;
@@ -1855,8 +1859,6 @@ if(window.innerWidth > 768 && !isDesktopCarousel){
     function updatePosition(instant = false){
 
         const gap = 20;
-
-const gap = 20;
 
 const slideWidth =
     slides[0].clientWidth + gap;
