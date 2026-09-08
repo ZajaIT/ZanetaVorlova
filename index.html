@@ -821,6 +821,100 @@ footer p{
     text-decoration:underline;
 }
 
+/* VÝBĚR VÁNOČNÍHO CUKROVÍ */
+
+.christmas-sweets{
+    position:relative;
+}
+
+.christmas-sweets-toggle{
+    width:100%;
+    height:72px;
+    border:none;
+    background:#f5f5f5;
+    padding:18px;
+    border-radius:18px;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:400;
+    color:#222;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    text-align:left;
+}
+
+.christmas-sweets-arrow,
+.branch-select-arrow{
+    width:7px;
+    height:7px;
+    border-right:2px solid #222;
+    border-bottom:2px solid #222;
+    transform:rotate(45deg);
+    margin-right:3px;
+    margin-top:-4px;
+    transition:transform 0.25s ease;
+}
+
+.branch-select-wrap{
+    position:relative;
+}
+
+#branchSelect{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    padding-right:50px;
+}
+
+.branch-select-arrow{
+    position:absolute;
+    right:18px;
+    top:50%;
+    pointer-events:none;
+}
+
+
+.christmas-sweets-options{
+    display:none;
+    margin-top:8px;
+    background:#fff;
+    border:1px solid #e7e7e7;
+    border-radius:18px;
+    padding:12px 16px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.07);
+}
+
+.christmas-sweets.open .christmas-sweets-options{
+    display:block;
+}
+
+.christmas-sweets-options label{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:9px 4px;
+    cursor:pointer;
+    color:#444;
+    font-size:0.92rem;
+    text-align:left;
+}
+
+.christmas-sweets-options label + label{
+    border-top:1px solid #eeeeee;
+}
+
+.christmas-sweets-options input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    margin:0;
+    padding:0;
+    flex-shrink:0;
+    accent-color:#24B4B1;
+    cursor:pointer;
+}
+
 /* MOBILE */
 
 @media(max-width:1100px){
@@ -1087,9 +1181,217 @@ form{
 }
 }
 
+/* =========================
+   VÁNOČNÍ BANNER
+========================= */
+
+.christmas-banner{
+    width:100%;
+    margin-top:76px;
+    margin-bottom:-96px;
+    border:0;
+    background:#f4ead8;
+    color:#4a2415;
+    font-family:'Montserrat',sans-serif;
+    cursor:pointer;
+    padding:16px 0 15px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.08);
+    position:sticky;
+    top:76px;
+    z-index:50;
+}
+
+.christmas-banner-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    text-align:center;
+}
+
+.christmas-banner-title{
+    font-size:1.05rem;
+    font-weight:800;
+    letter-spacing:0.6px;
+}
+
+.christmas-banner-extra{
+    font-size:0.84rem;
+    font-weight:600;
+    color:#79523d;
+}
+
+.christmas-banner-link{
+    margin-top:3px;
+    font-size:0.82rem;
+    font-weight:800;
+    text-decoration:underline;
+    text-underline-offset:3px;
+}
+
+.christmas-banner:hover{
+    background:#eee0ca;
+}
+
+@media(max-width:768px){
+
+    .christmas-banner{
+        padding:13px 0;
+    }
+
+    .christmas-banner-inner{
+        gap:4px;
+        padding:0 12px;
+    }
+
+    .christmas-banner-title{
+        font-size:0.95rem;
+    }
+
+    .christmas-banner-extra{
+        font-size:0.7rem;
+        line-height:1.4;
+    }
+
+    .christmas-banner-link{
+        font-size:0.73rem;
+        margin-top:2px;
+    }
+}
+
+/* =========================
+   VÁNOČNÍ POPUP
+========================= */
+
+.christmas-modal{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    background:rgba(0,0,0,0.78);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.christmas-modal-box{
+    position:relative;
+    width:auto;
+    max-width:92vw;
+    max-height:94vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.christmas-modal-box > a{
+    display:block;
+    max-height:88vh;
+}
+
+.christmas-modal-image{
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:88vh;
+    object-fit:contain;
+    display:block;
+    box-shadow:0 15px 55px rgba(0,0,0,0.45);
+    cursor:pointer;
+}
+
+.christmas-modal-close{
+    position:absolute;
+    top:-14px;
+    right:-14px;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#3b1b0f;
+    font-size:30px;
+    line-height:1;
+    font-family:Arial,sans-serif;
+    cursor:pointer;
+    z-index:10;
+    box-shadow:0 4px 18px rgba(0,0,0,0.3);
+}
+
+.christmas-modal-hint{
+    margin-top:10px;
+    color:#fff;
+    font-size:0.85rem;
+    font-weight:600;
+    text-align:center;
+}
+
+@media(max-width:768px){
+
+    .christmas-modal{
+        padding:12px;
+    }
+
+    .christmas-modal-box{
+        max-width:94vw;
+        max-height:96vh;
+    }
+
+    .christmas-modal-box > a{
+        max-height:88vh;
+    }
+
+    .christmas-modal-image{
+        max-height:88vh;
+    }
+
+    .christmas-modal-close{
+        top:-10px;
+        right:-10px;
+        width:40px;
+        height:40px;
+        font-size:27px;
+    }
+
+    .christmas-modal-hint{
+        font-size:0.75rem;
+        margin-top:8px;
+    }
+}
+
 </style>
 </head>
 <body>
+
+<!-- VÁNOČNÍ POPUP -->
+<div class="christmas-modal" id="christmasModal">
+
+    <div class="christmas-modal-box">
+
+        <button
+            class="christmas-modal-close"
+            id="christmasModalClose"
+            type="button"
+            aria-label="Zavřít nabídku vánočního cukroví">
+            ×
+        </button>
+
+        <a href="#contact" id="christmasPosterLink">
+            <img
+                src="vanocni-cukrovi.webp"
+                alt="Vánoční cukroví – nabídka Cukráren pro radost"
+                class="christmas-modal-image">
+        </a>
+
+        <div class="christmas-modal-hint">
+            Kliknutím na plakát přejdete k objednávce
+        </div>
+
+    </div>
+
+</div>
+
 
 <nav>
     <div class="container nav-wrapper">
@@ -1110,6 +1412,25 @@ form{
         </div>
     </div>
 </nav>
+
+<!-- VÁNOČNÍ BANNER -->
+<button class="christmas-banner" id="christmasBanner" type="button">
+    <div class="container christmas-banner-inner">
+
+        <div class="christmas-banner-title">
+            VÁNOČNÍ CUKROVÍ 2026
+        </div>
+
+        <div class="christmas-banner-extra">
+            11 druhů cukroví • Dolská medovinka zdarma • vyzvednutí od 14. 12. 2026
+        </div>
+
+        <span class="christmas-banner-link">
+            Zobrazit nabídku →
+        </span>
+
+    </div>
+</button>
 
 <section class="hero" id="hero">
 
@@ -1631,6 +1952,7 @@ font-weight:600;
 
     <form id="contactForm" action="https://formspree.io/f/mqejqyzv" method="POST">
 
+
         <p class="form-note">
             Pošlete nám zprávu a prosím vyčkejte, budeme Vás kontaktovat.
         </p>
@@ -1649,14 +1971,83 @@ font-weight:600;
                     <input type="email" name="email" placeholder="E-mail">
                 </div>
 
-                <div class="form-group">
-                    <select id="branchSelect" name="pobocka" required>
-                        <option selected disabled>Vyberte pobočku</option>
-                        <option value="marketa">Cukrárna Markéta</option>
-                        <option value="vinohrady">Cukrárna Vinohrady</option>
-                        <option value="roztoky">Cukrárna Roztoky</option>
-                    </select>
-                </div>
+                <div class="form-group branch-select-wrap">
+    <select id="branchSelect" name="pobocka" required>
+        <option selected disabled>Vyberte pobočku</option>
+        <option value="marketa">Cukrárna Markéta</option>
+        <option value="vinohrady">Cukrárna Vinohrady</option>
+        <option value="roztoky">Cukrárna Roztoky</option>
+    </select>
+
+    <span class="branch-select-arrow"></span>
+</div>
+
+<div class="form-group christmas-sweets">
+
+    <button type="button" class="christmas-sweets-toggle" id="christmasSweetsToggle">
+        <span>Vánoční cukroví – vyberte druhy</span>
+        <span class="christmas-sweets-arrow"></span>
+    </button>
+
+    <div class="christmas-sweets-options" id="christmasSweetsOptions">
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Vosí hnízda">
+            <span>Vosí hnízda</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Vanilkové rohlíčky">
+            <span>Vanilkové rohlíčky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Linecké cukroví s domácí marmeládou">
+            <span>Linecké cukroví s domácí marmeládou</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Pracny">
+            <span>Pracny</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Ořechy plněné">
+            <span>Ořechy plněné</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Kávové slzičky">
+            <span>Kávové slzičky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Medové perníčky">
+            <span>Medové perníčky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Plněné košíčky">
+            <span>Plněné košíčky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Kokosové tyčinky">
+            <span>Kokosové tyčinky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Rumové kuličky">
+            <span>Rumové kuličky</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="vanocni_cukrovi[]" value="Raffaello kuličky">
+            <span>Raffaello kuličky</span>
+        </label>
+
+    </div>
+</div>
 
                 <div class="form-group">
                     <textarea name="zprava" placeholder="Vaše zpráva" required></textarea>
@@ -1938,6 +2329,41 @@ form.addEventListener('submit', async function(e){
 
     }
 
+});
+
+</script>
+
+<script>
+const christmasModal = document.getElementById('christmasModal');
+const christmasModalClose = document.getElementById('christmasModalClose');
+const christmasPosterLink = document.getElementById('christmasPosterLink');
+const christmasBanner = document.getElementById('christmasBanner');
+
+function closeChristmasModal(){
+    christmasModal.style.display = 'none';
+}
+
+christmasModalClose.addEventListener('click', closeChristmasModal);
+
+christmasModal.addEventListener('click', function(e){
+    if(e.target === christmasModal){
+        closeChristmasModal();
+    }
+});
+
+christmasPosterLink.addEventListener('click', function(){
+    closeChristmasModal();
+});
+
+christmasBanner.addEventListener('click', function(){
+    christmasModal.style.display = 'flex';
+});
+
+const christmasSweets = document.querySelector('.christmas-sweets');
+const christmasSweetsToggle = document.getElementById('christmasSweetsToggle');
+
+christmasSweetsToggle.addEventListener('click', function(){
+    christmasSweets.classList.toggle('open');
 });
 
 </script>
