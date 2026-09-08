@@ -702,6 +702,34 @@ textarea{
     resize:none;
 }
 
+  .christmas-order{
+    margin-bottom:20px;
+}
+
+.christmas-order-label{
+    width:100%;
+    min-height:60px;
+    background:#f5f5f5;
+    border-radius:18px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    color:#222;
+    font-size:1rem;
+}
+
+.christmas-order-label input[type="checkbox"]{
+    width:19px;
+    height:19px;
+    margin:0;
+    padding:0;
+    flex-shrink:0;
+    accent-color:#24B4B1;
+    cursor:pointer;
+}
+
 .submit-btn{
     border:none;
     font-family:'Montserrat',sans-serif;
@@ -1983,71 +2011,14 @@ font-weight:600;
     <span class="branch-select-arrow"></span>
 </div>
 
-<div class="form-group christmas-sweets">
 
-    <button type="button" class="christmas-sweets-toggle" id="christmasSweetsToggle">
-        <span>Vánoční cukroví – vyberte druhy</span>
-        <span class="christmas-sweets-arrow"></span>
-    </button>
+</div>
 
-    <div class="christmas-sweets-options" id="christmasSweetsOptions">
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Vosí hnízda">
-            <span>Vosí hnízda</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Vanilkové rohlíčky">
-            <span>Vanilkové rohlíčky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Linecké cukroví s domácí marmeládou">
-            <span>Linecké cukroví s domácí marmeládou</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Pracny">
-            <span>Pracny</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Ořechy plněné">
-            <span>Ořechy plněné</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Kávové slzičky">
-            <span>Kávové slzičky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Medové perníčky">
-            <span>Medové perníčky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Plněné košíčky">
-            <span>Plněné košíčky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Kokosové tyčinky">
-            <span>Kokosové tyčinky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Rumové kuličky">
-            <span>Rumové kuličky</span>
-        </label>
-
-        <label>
-            <input type="checkbox" name="vanocni_cukrovi[]" value="Raffaello kuličky">
-            <span>Raffaello kuličky</span>
-        </label>
-
-    </div>
+      <div class="form-group christmas-order">
+    <label class="christmas-order-label">
+        <input type="checkbox" name="vanocni_cukrovi" value="Ano">
+        <span>Chci objednat vánoční cukroví</span>
+    </label>
 </div>
 
                 <div class="form-group">
@@ -2359,14 +2330,6 @@ christmasPosterLink.addEventListener('click', function(){
 christmasBanner.addEventListener('click', function(){
     christmasModal.style.display = 'flex';
 });
-
-const christmasSweets = document.querySelector('.christmas-sweets');
-const christmasSweetsToggle = document.getElementById('christmasSweetsToggle');
-
-christmasSweetsToggle.addEventListener('click', function(){
-    christmasSweets.classList.toggle('open');
-});
-
 </script>
     
 </body>
