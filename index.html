@@ -1389,6 +1389,124 @@ form{
     }
 }
 
+/* DVA VÁNOČNÍ PLAKÁTY */
+
+.christmas-posters{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    max-height:84vh;
+}
+
+.christmas-poster-link{
+    display:block;
+    height:84vh;
+}
+
+.christmas-posters .christmas-modal-image{
+    width:auto;
+    height:100%;
+    max-height:84vh;
+    max-width:43vw;
+    object-fit:contain;
+}
+
+/* ŠIPKY A TEČKY JSOU NA PC SKRYTÉ */
+
+.christmas-slider-arrow,
+.christmas-slider-dots{
+    display:none;
+}
+
+
+/* MOBIL */
+
+@media(max-width:768px){
+
+    .christmas-modal-box{
+        width:94vw;
+    }
+
+    .christmas-posters{
+        display:flex;
+        width:100%;
+        overflow:hidden;
+        justify-content:flex-start;
+        gap:0;
+        max-height:82vh;
+    }
+
+    .christmas-poster-link{
+        min-width:100%;
+        width:100%;
+        height:auto;
+        flex-shrink:0;
+        display:flex;
+        justify-content:center;
+        transition:transform 0.35s ease;
+    }
+
+    .christmas-posters .christmas-modal-image{
+        width:auto;
+        height:auto;
+        max-width:100%;
+        max-height:78vh;
+        object-fit:contain;
+    }
+
+    .christmas-slider-arrow{
+        display:flex;
+        position:absolute;
+        top:45%;
+        transform:translateY(-50%);
+        width:40px;
+        height:40px;
+        border:0;
+        border-radius:50%;
+        background:rgba(255,255,255,0.92);
+        align-items:center;
+        justify-content:center;
+        font-size:27px;
+        cursor:pointer;
+        z-index:15;
+        box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .christmas-slider-prev{
+        left:8px;
+    }
+
+    .christmas-slider-next{
+        right:8px;
+    }
+
+    .christmas-slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:7px;
+        margin-top:9px;
+    }
+
+    .christmas-slider-dots button{
+        width:8px;
+        height:8px;
+        padding:0;
+        border:0;
+        border-radius:50%;
+        background:rgba(255,255,255,0.45);
+        cursor:pointer;
+    }
+
+    .christmas-slider-dots button.active{
+        background:white;
+    }
+
+    .christmas-modal-hint{
+        margin-top:7px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -1406,12 +1524,40 @@ form{
             ×
         </button>
 
-        <a href="#contact" id="christmasPosterLink">
-            <img
-                src="vanocni-cukrovi.webp"
-                alt="Vánoční cukroví – nabídka Cukráren pro radost"
-                class="christmas-modal-image">
-        </a>
+        <div class="christmas-posters">
+
+            <a href="#contact" class="christmas-poster-link">
+                <img
+                    src="vanocni-cukrovi.webp"
+                    alt="Vánoční cukroví – nabídka Cukráren pro radost"
+                    class="christmas-modal-image">
+            </a>
+
+            <a href="#contact" class="christmas-poster-link">
+                <img
+                    src="vanocni_plakat.webp"
+                    alt="Bezlepkové a bezlaktózové RAW vánoční cukroví"
+                    class="christmas-modal-image">
+            </a>
+
+        </div>
+
+        <button class="christmas-slider-arrow christmas-slider-prev"
+                type="button"
+                aria-label="Předchozí nabídka">
+            ‹
+        </button>
+
+        <button class="christmas-slider-arrow christmas-slider-next"
+                type="button"
+                aria-label="Další nabídka">
+            ›
+        </button>
+
+        <div class="christmas-slider-dots">
+            <button class="active" type="button" aria-label="První nabídka"></button>
+            <button type="button" aria-label="Druhá nabídka"></button>
+        </div>
 
         <div class="christmas-modal-hint">
             Kliknutím na plakát přejdete k objednávce
@@ -1451,7 +1597,7 @@ form{
         </div>
 
         <div class="christmas-banner-extra">
-            11 druhů cukroví • Dolská medovinka zdarma • vyzvednutí od 14. 12. 2026
+            11 druhů cukroví • Dolská medovinka zdarma • RAW cukroví • vyzvednutí od 14. 12. 2026
         </div>
 
         <span class="christmas-banner-link">
@@ -2305,11 +2451,38 @@ form.addEventListener('submit', async function(e){
 <script>
 const christmasModal = document.getElementById('christmasModal');
 const christmasModalClose = document.getElementById('christmasModalClose');
-const christmasPosterLink = document.getElementById('christmasPosterLink');
 const christmasBanner = document.getElementById('christmasBanner');
+
+const christmasPosterLinks =
+    document.querySelectorAll('.christmas-poster-link');
+
+const christmasPrev =
+    document.querySelector('.christmas-slider-prev');
+
+const christmasNext =
+    document.querySelector('.christmas-slider-next');
+
+const christmasDots =
+    document.querySelectorAll('.christmas-slider-dots button');
+
+let christmasSlide = 0;
 
 function closeChristmasModal(){
     christmasModal.style.display = 'none';
+}
+
+function showChristmasSlide(index){
+
+    christmasSlide = index;
+
+    christmasPosterLinks.forEach(link => {
+        link.style.transform =
+            `translateX(-${christmasSlide * 100}%)`;
+    });
+
+    christmasDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === christmasSlide);
+    });
 }
 
 christmasModalClose.addEventListener('click', closeChristmasModal);
@@ -2320,8 +2493,30 @@ christmasModal.addEventListener('click', function(e){
     }
 });
 
-christmasPosterLink.addEventListener('click', function(){
-    closeChristmasModal();
+christmasPosterLinks.forEach(link => {
+    link.addEventListener('click', closeChristmasModal);
+});
+
+christmasNext.addEventListener('click', function(){
+    showChristmasSlide(
+        christmasSlide === christmasPosterLinks.length - 1
+            ? 0
+            : christmasSlide + 1
+    );
+});
+
+christmasPrev.addEventListener('click', function(){
+    showChristmasSlide(
+        christmasSlide === 0
+            ? christmasPosterLinks.length - 1
+            : christmasSlide - 1
+    );
+});
+
+christmasDots.forEach((dot, index) => {
+    dot.addEventListener('click', function(){
+        showChristmasSlide(index);
+    });
 });
 
 christmasBanner.addEventListener('click', function(){
